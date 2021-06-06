@@ -1,7 +1,12 @@
-﻿default:  
+﻿# Пример конфигурационного файла, который содержит два плана синхронизации: regular и vms.
+
+regular:  
+
+    - D:\1C:                M:\Drive\Backup\D\1C
+    - D:\Apps:              M:\Drive\Backup\D\Apps
+    - D:\Audio:             M:\Drive\Backup\D\Audio
+
+vms:
 
     - C:\VirtualBox VMs:    M:\Drive\Backup\C\VirtualBox VMs
     - C:\VMware VMs:        M:\Drive\Backup\C\VMware VMs
-    - D:\1C:                M:\Drive\Backup\D\1C
-    - D:\Apps:              M:\Drive\Backup\D\Apps
-    - D:\Аудио:             M:\Drive\Backup\D\Аудио
