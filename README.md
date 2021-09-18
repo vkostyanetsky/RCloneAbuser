@@ -35,3 +35,7 @@ Source: D:\Audio
 Target: M:\Drive\Backup\D\Audio
 --- 0:0:10 ---
 ```
+
+## Какие модули Python нужны?
+
+Требования к модулям и их версиям приведены в файле [requirements.txt](requirements.txt).
