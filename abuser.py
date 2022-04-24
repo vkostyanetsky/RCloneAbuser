@@ -22,7 +22,7 @@ def run():
 
         return result
 
-    def print_elapsed_time(start_time):
+    def print_elapsed_time(start_time: float):
 
         elapsed_time = time.time() - start_time
         elapsed_time = round(elapsed_time, 1)
