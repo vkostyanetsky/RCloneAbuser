@@ -1,97 +1,68 @@
 import os
-import sys
 import time
 import yaml
+import argparse
 
-def print_time(s):
 
-    m, s = divmod(s, 60)
-    h, m = divmod(m, 60)
+def run():
 
-    h = round(h)
-    m = round(m)
-    s = round(s)
+    def get_args() -> argparse.Namespace:
 
-    print('--- {0}:{1}:{2} ---'.format(h, m, s))
+        parser = argparse.ArgumentParser()
 
-def get_config():
+        parser.add_argument('--config', type=str, help='a path to a config file', required=True)
+        parser.add_argument('--rclone', type=str, help='a path to rclone binary on your computer', required=True)
 
-    def get_config_path():
+        return parser.parse_args()
 
-        script_dir  = os.path.abspath(os.path.dirname(__file__))
-        
-        return os.path.join(script_dir, 'config.yaml')
+    def get_config() -> dict:
 
-    def get_data_from_yaml(yaml_filepath):
-
-        with open(yaml_filepath, encoding = 'utf-8-sig') as yaml_file:
+        with open(args.config, encoding='utf-8-sig') as yaml_file:
             result = yaml.safe_load(yaml_file)
 
         return result
 
-    config_path = get_config_path()
+    def print_elapsed_time(start_time):
 
-    return get_data_from_yaml(config_path)
+        elapsed_time = time.time() - start_time
+        elapsed_time = round(elapsed_time, 1)
 
-def get_plans():
+        m, s = divmod(elapsed_time, 60)
+        h, m = divmod(m, 60)
 
-    def get_script_parameter_value(name, default_value):
-                
-        result = default_value
-        
-        for i, value in enumerate(sys.argv):
+        h = round(h)
+        m = round(m)
+        s = round(s)
 
-            if value == name and len(sys.argv) > i:
+        print('--- {0}h {1}m {2}s ---'.format(h, m, s))
 
-                result = sys.argv[i + 1]
-                break
+    start_time_for_script = time.time()
 
-        return result
+    args = get_args()
+    config = get_config()
+    command = '{} sync "{}" "{}" --copy-links --progress --stats-one-line'
 
-    plans = get_script_parameter_value('--plans', None)
+    for config_line in config:
 
-    if plans != None:
-        plans = plans.split(',')
-
-    return plans
-
-def rclone():
-
-    command = 'rclone sync "{0}" "{1}" --copy-links --progress --stats-one-line'.format(source, target)     
-    
-    os.system(command)
-
-config  = get_config()
-plans   = get_plans()
-
-if plans == None:
-    exit()
-
-elapsed_time_total = 0
-
-for plan in plans:
-
-    for paths in config[plan]:
-        
-        sources = paths.keys()
+        sources = config_line.keys()
 
         for source in sources:
 
-            target = paths[source]            
+            target = config_line[source]
 
-            print('Source: %s' % source)  
-            print('Target: %s' % target)
+            print("Source: {}".format(source))
+            print("Target: {}".format(target))
 
-            start_time = time.time()
+            start_time_for_source = time.time()
 
-            rclone()
+            os.system(command.format(args.rclone, source, target))
 
-            elapsed_time = time.time() - start_time
-            elapsed_time = round(elapsed_time, 1)
+            print_elapsed_time(start_time_for_source)
 
-            print_time(elapsed_time)
-            print('')
+            print()
 
-            elapsed_time_total += elapsed_time
+    print_elapsed_time(start_time_for_script)
 
-print_time(elapsed_time_total)
+
+if __name__ == '__main__':
+    run()
