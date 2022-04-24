@@ -14,7 +14,7 @@ py abuser.py --config="D:\Apps\RCloneAbuser\config.yaml" --rclone="D:\Apps\RClon
 
 ## How I have to write the config file?
 
-There is a pair of paths per line, separated by colon. First one is a folder whose content must be synced. The second one is the folder the first one needs to be synced with.  
+There is a pair of paths per line, separated by colon. First one is a folder whose content must be synced. The second is the folder the first one needs to be synced with.  
 
 ## How does it work with rclone?
 
