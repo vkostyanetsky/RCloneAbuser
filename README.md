@@ -2,40 +2,30 @@
 
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
-Скрипт, который последовательно запускает утилиту [rclone](https://rclone.org) для списка из файлов и папок. Я использую его для бэкапа данных со своего компьютера на домашний NAS: это несколько удобнее, чем держать набор длиннющих, почти одинаковых команд в нескольких cmd-файлах.
+It is a simple Python script, intended to execute [rclone](https://rclone.org) on a list of folders in one call. I use it to back up data from my PC to home NAS: it's a bit more convenient than make a bunch of cmd files, similar to each other.
 
-## Как настроить?
+## Well, how to use it?
 
-Нужно создать в файле config.yaml план синхронизации (или несколько) и указать в нем пару источник-получатель (т.е. что синхронизировать и с чем синхронизировать). В план может входить сколько угодно источников и получателей; для каждого будет вызвана следующая команда:
-
-```
-rclone sync "{источник}" "{получатель}" --copy-links --progress --stats-one-line
-```
-
-Параметры вызова утилиты можно поменять в функции rclone().
-
-## Как пользоваться?
-
-Нужно запустить скрипт abuser.py с параметром plans, указав нужный план синхронизации. Можно указать несколько планов через запятую. Пример:
+There are two required parameters: `--config` and `--rclone`. First one is a path to the rclone binary file on your computer. Second one is a path to a YAML config file like [this one](config.yaml). For instance:
 
 ```
-python abuser.py --plans regular,vms
+py abuser.py --config="D:\Apps\RCloneAbuser\config.yaml" --rclone="D:\Apps\RCloneAbuser\rclone.exe"
 ```
 
-Скрипт последовательно пройдет по всем указанным файлам и папкам, синхронизировав источники и получатели. Кроме того, для каждого источника он выведет время, потраченное на синхронизацию.
+## How I have to write the config file?
 
-Пример вывода скрипта:
+There is a pair of paths per line, separated by colon. First one is a folder whose content must be synced. The second one is the folder the first one needs to be synced with.  
+
+## How does it work with rclone?
+
+The script will execute the following command for an every pair of folders:
 
 ```
-Source: D:\Apps
-Target: M:\Drive\Backup\D\Apps
---- 0:1:22 ---
-
-Source: D:\Audio
-Target: M:\Drive\Backup\D\Audio
---- 0:0:10 ---
+rclone sync "{source}" "{target}" --copy-links --progress --stats-one-line
 ```
 
-## Какие модули Python нужны?
+You can change this behaviour in the very start of the script (see the variable named `command`). 
 
-Требования к модулям и их версиям приведены в файле [requirements.txt](requirements.txt).
+## What about dependencies?
+
+[PyYAML](requirements.txt) only.
