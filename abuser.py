@@ -1,6 +1,7 @@
 import os
 import time
 import yaml
+import logging
 import argparse
 
 
@@ -22,6 +23,24 @@ def run():
 
         return result
 
+    def get_logger() -> logging.Logger:
+
+        def get_stream_handler():
+
+            stream_handler = logging.StreamHandler()
+
+            stream_handler.setLevel(logging.INFO)
+            stream_handler.setFormatter(logging.Formatter(f"%(message)s"))
+
+            return stream_handler
+
+        result = logging.getLogger(__name__)
+
+        result.setLevel(logging.INFO)
+        result.addHandler(get_stream_handler())
+
+        return result
+
     def print_elapsed_time(start_time: float):
 
         elapsed_time = time.time() - start_time
@@ -34,12 +53,13 @@ def run():
         m = round(m)
         s = round(s)
 
-        print('--- {0}h {1}m {2}s ---'.format(h, m, s))
+        logger.info("Time taken: {0}h {1}m {2}s\n".format(h, m, s))
 
     start_time_for_script = time.time()
 
     args = get_args()
     config = get_config()
+    logger = get_logger()
     command = '{} sync "{}" "{}" --copy-links --progress --stats-one-line'
 
     for config_line in config:
@@ -50,16 +70,14 @@ def run():
 
             target = config_line[source]
 
-            print("Source: {}".format(source))
-            print("Target: {}".format(target))
+            logger.info("Source: {}".format(source))
+            logger.info("Target: {}".format(target))
 
             start_time_for_source = time.time()
 
             os.system(command.format(args.rclone, source, target))
 
             print_elapsed_time(start_time_for_source)
-
-            print()
 
     print_elapsed_time(start_time_for_script)
 
