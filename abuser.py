@@ -6,31 +6,37 @@ import argparse
 
 
 def run():
-
     def get_args() -> argparse.Namespace:
 
         parser = argparse.ArgumentParser()
 
-        parser.add_argument('--config', type=str, help='a path to a config file', required=True)
-        parser.add_argument('--rclone', type=str, help='a path to rclone binary on your computer', required=True)
+        parser.add_argument(
+            "--config", type=str, help="a path to a config file", required=True
+        )
+
+        parser.add_argument(
+            "--rclone",
+            type=str,
+            help="a path to rclone binary",
+            required=True,
+        )
 
         return parser.parse_args()
 
     def get_config() -> dict:
 
-        with open(args.config, encoding='utf-8-sig') as yaml_file:
+        with open(args.config, encoding="utf-8-sig") as yaml_file:
             result = yaml.safe_load(yaml_file)
 
         return result
 
     def get_logger() -> logging.Logger:
-
         def get_stream_handler():
 
             stream_handler = logging.StreamHandler()
 
             stream_handler.setLevel(logging.INFO)
-            stream_handler.setFormatter(logging.Formatter(f"%(message)s"))
+            stream_handler.setFormatter(logging.Formatter("%(message)s"))
 
             return stream_handler
 
@@ -82,5 +88,5 @@ def run():
     print_elapsed_time(start_time_for_script)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()
