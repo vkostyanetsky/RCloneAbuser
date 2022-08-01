@@ -9,7 +9,7 @@ It is a simple Python script, intended to execute [rclone](https://rclone.org) o
 There are two required parameters: `--config` and `--rclone`. First one is a path to the rclone binary file on your computer. Second one is a path to a YAML config file like [this one](config.yaml). For instance:
 
 ```commandline
-py abuser.py --config="D:\Apps\RCloneAbuser\config.yaml" --rclone="D:\Apps\RCloneAbuser\rclone.exe"
+py abuser.py --config="D:\apps\rclone\abuser.yaml" --rclone="D:\apps\rclone\rclone.exe"
 ```
 
 ## 🙂 How to write the config file?
