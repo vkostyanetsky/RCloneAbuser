@@ -1,4 +1,4 @@
-# 📁 🗃️ 🪣 RCloneAbuser
+# 📁 🗂️ 🗃 RCloneAbuser
 
 [![flake8](https://github.com/vkostyanetsky/RCloneAbuser/actions/workflows/flake8.yml/badge.svg)](https://github.com/vkostyanetsky/RCloneAbuser/actions/workflows/flake8.yml) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
@@ -8,7 +8,7 @@ It is a simple Python script, intended to execute [rclone](https://rclone.org) o
 
 There are two required parameters: `--config` and `--rclone`. First one is a path to the rclone binary file on your computer. Second one is a path to a YAML config file like [this one](config.yaml). For instance:
 
-```
+```commandline
 py abuser.py --config="D:\Apps\RCloneAbuser\config.yaml" --rclone="D:\Apps\RCloneAbuser\rclone.exe"
 ```
 
@@ -28,8 +28,8 @@ Here the `D:\42` directory is going to by synced with the `M:\Backup\D\42` direc
 
 The script will execute the following command for an every pair of folders:
 
-```
-rclone sync "{source}" "{target}" --copy-links --progress --stats-one-line
+```commandline
+rclone sync "source" "target" --copy-links --progress --stats-one-line
 ```
 
-You can easily change this behaviour: look for a variable named `command`.
+You can easily change this behaviour: look for a `command` variable.
