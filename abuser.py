@@ -15,7 +15,10 @@ def run():
         )
 
         parser.add_argument(
-            "--rclone", type=str, help="path to rclone binary", default="rclone"
+            "--rclone",
+            type=str,
+            help='path to rclone binary ("rclone" by default)',
+            default="rclone",
         )
 
         return parser.parse_args()
@@ -62,20 +65,18 @@ def run():
     logger = get_logger()
     command = '{} sync "{}" "{}" --copy-links --progress --stats-one-line'
 
-    for config_line in config:
-        sources = config_line.keys()
+    for source in config.keys():
 
-        for source in sources:
-            target = config_line[source]
+        target = config[source]
 
-            logger.info("Source: {}".format(source))
-            logger.info("Target: {}".format(target))
+        logger.info("Source: {}".format(source))
+        logger.info("Target: {}".format(target))
 
-            start_time_for_source = time.time()
+        start_time_for_source = time.time()
 
-            os.system(command.format(args.rclone, source, target))
+        os.system(command.format(args.rclone, source, target))
 
-            print_elapsed_time(start_time_for_source)
+        print_elapsed_time(start_time_for_source)
 
     print_elapsed_time(start_time_for_script)
 
