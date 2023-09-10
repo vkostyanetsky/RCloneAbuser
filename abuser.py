@@ -18,7 +18,7 @@ def run():
             "--rclone",
             type=str,
             help="a path to rclone binary",
-            required=True,
+            default="rclone"
         )
 
         return parser.parse_args()
