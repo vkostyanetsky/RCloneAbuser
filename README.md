@@ -18,6 +18,12 @@ As for the script, there are two required parameters: `--config` and `--rclone`.
 py abuser.py --config="D:\Apps\RClone\abuser.yaml" --rclone="D:\Apps\RClone\rclone.exe"
 ```
 
+By the way, you can omit the `rclone` parameter if the app has an alias in your system, so you can call it like this:
+
+```commandline
+rclone
+```
+
 ## 🙂 How to write the config file?
 
 There is a pair of paths per line, separated by colon. First one is a folder whose content must be synced. The second is the folder the first one needs to be synced with.  
