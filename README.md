@@ -1,6 +1,6 @@
 # 📁 🗂️ 🗃 RCloneAbuser
 
-[![flake8](https://github.com/vkostyanetsky/RCloneAbuser/actions/workflows/flake8.yml/badge.svg)](https://github.com/vkostyanetsky/RCloneAbuser/actions/workflows/flake8.yml) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+[![black](https://github.com/vkostyanetsky/Todozer/actions/workflows/black.yml/badge.svg)](https://github.com/vkostyanetsky/Todozer/actions/workflows/black.yml) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
 It is a simple Python script, intended to execute [rclone](https://rclone.org) on a list of folders. I use it to back up data from my PC to home NAS: it's a bit more convenient than make a bunch of rclone shortcuts, similar to each other.
 

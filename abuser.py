@@ -8,7 +8,6 @@ import yaml
 
 def run():
     def get_args() -> argparse.Namespace:
-
         parser = argparse.ArgumentParser()
 
         parser.add_argument(
@@ -25,7 +24,6 @@ def run():
         return parser.parse_args()
 
     def get_config() -> dict:
-
         with open(args.config, encoding="utf-8-sig") as yaml_file:
             result = yaml.safe_load(yaml_file)
 
@@ -33,7 +31,6 @@ def run():
 
     def get_logger() -> logging.Logger:
         def get_stream_handler():
-
             stream_handler = logging.StreamHandler()
 
             stream_handler.setLevel(logging.INFO)
@@ -49,7 +46,6 @@ def run():
         return result
 
     def print_elapsed_time(start_time: float):
-
         elapsed_time = time.time() - start_time
         elapsed_time = round(elapsed_time, 1)
 
@@ -70,11 +66,9 @@ def run():
     command = '{} sync "{}" "{}" --copy-links --progress --stats-one-line'
 
     for config_line in config:
-
         sources = config_line.keys()
 
         for source in sources:
-
             target = config_line[source]
 
             logger.info("Source: {}".format(source))
