@@ -12,7 +12,7 @@ First of all, you need to install `rclone` in case if it is not installed yet. F
 winget install Rclone.Rclone
 ```
 
-As for the scrupt, there are two required parameters: `--config` and `--rclone`. First one is a path to the rclone binary file on your computer. Second one is a path to a YAML config file like [this one](config.yaml). For instance:
+As for the script, there are two required parameters: `--config` and `--rclone`. First one is a path to the rclone binary file on your computer. Second one is a path to a YAML config file like [this one](config.yaml). For instance:
 
 ```commandline
 py abuser.py --config="D:\Apps\RClone\abuser.yaml" --rclone="D:\Apps\RClone\rclone.exe"
