@@ -18,7 +18,7 @@ As for the script, there are two required parameters: `--config` and `--rclone`.
 py abuser.py --config="D:\Apps\RClone\abuser.yaml" --rclone="D:\Apps\RClone\rclone.exe"
 ```
 
-By the way, you can omit the `rclone` parameter if the app has an alias in your system, so you can call it like this:
+By the way, you can omit the `rclone` parameter if the app has an alias in your system. I mean, if you can call it like this, without specifying the full path:
 
 ```commandline
 rclone
