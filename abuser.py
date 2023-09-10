@@ -66,7 +66,6 @@ def run():
     command = '{} sync "{}" "{}" --copy-links --progress --stats-one-line'
 
     for source in config.keys():
-
         target = config[source]
 
         logger.info("Source: {}".format(source))
