@@ -11,14 +11,11 @@ def run():
         parser = argparse.ArgumentParser()
 
         parser.add_argument(
-            "--config", type=str, help="a path to a config file", required=True
+            "--config", type=str, help="path to a config file", required=True
         )
 
         parser.add_argument(
-            "--rclone",
-            type=str,
-            help="a path to rclone binary",
-            default="rclone"
+            "--rclone", type=str, help="path to rclone binary", default="rclone"
         )
 
         return parser.parse_args()
