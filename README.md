@@ -6,7 +6,7 @@ It is a simple Python script, intended to execute [rclone](https://rclone.org) o
 
 ## 🤨 Well, how to use it?
 
-First of all, you need to install `rclone` in case if it is not installed yet:
+First of all, you need to install `rclone` in case if it is not installed yet. For instance, this is how to do it for Windows:
 
 ```commandline
 winget install Rclone.Rclone
