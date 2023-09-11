@@ -1,3 +1,7 @@
+"""
+Consequently clones directories from a given list using rclone.
+"""
+
 import argparse
 import logging
 import os
@@ -6,7 +10,12 @@ import time
 import yaml
 
 
-def run():
+def run() -> None:
+    """
+    Doing the mail script's objective (to clone listed directories).
+    :return: nothing
+    """
+
     def get_args() -> argparse.Namespace:
         parser = argparse.ArgumentParser()
 
@@ -56,7 +65,7 @@ def run():
         m = round(m)
         s = round(s)
 
-        logger.info("Time taken: {0}h {1}m {2}s\n".format(h, m, s))
+        logger.info("Time taken: %sh %sm %ss\n", h, m, s)
 
     start_time_for_script = time.time()
 
@@ -68,8 +77,8 @@ def run():
     for source in config.keys():
         target = config[source]
 
-        logger.info("Source: {}".format(source))
-        logger.info("Target: {}".format(target))
+        logger.info("Source: %s", source)
+        logger.info("Target: %s", target)
 
         start_time_for_source = time.time()
 
