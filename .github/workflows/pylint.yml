@@ -1,0 +1,21 @@
+name: pylint
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: pylint
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+    - run: pip install --upgrade pip
+    - run: pip install -r requirements.txt
+    - run: pip install pylint
+    - run: pylint $(git ls-files '*.py')
