@@ -58,14 +58,14 @@ def run() -> None:
         elapsed_time = time.time() - start_time
         elapsed_time = round(elapsed_time, 1)
 
-        m, s = divmod(elapsed_time, 60)
-        h, m = divmod(m, 60)
+        minutes, seconds = divmod(elapsed_time, 60)
+        hours, minutes = divmod(minutes, 60)
 
-        h = round(h)
-        m = round(m)
-        s = round(s)
+        hours = round(hours)
+        minutes = round(minutes)
+        seconds = round(seconds)
 
-        logger.info("Time taken: %sh %sm %ss\n", h, m, s)
+        logger.info("Time taken: %sh %sm %ss\n", hours, minutes, seconds)
 
     start_time_for_script = time.time()
 
